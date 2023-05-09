@@ -25,7 +25,7 @@ void push(stack_t **stack, unsigned int line_number)
     char *arg = NULL;
     const char *separator = " \t\n";
     int n = 0;
-    stack_t *new;
+    stack_t *new, *current;
 
     arg = strtok(NULL, separator);
     if(arg == NULL)
@@ -49,10 +49,19 @@ void push(stack_t **stack, unsigned int line_number)
     new->n = n;
     new->prev = NULL;
     new->next = NULL;
-    
-    if(*stack != NULL)
-        (*stack)->prev = new;    
-    *stack = new;
+
+    if(*stack == NULL)    
+        *stack = new;
+    else
+    {
+        current = *stack;
+        while(current->next != NULL)
+        {
+            current = current->next;
+        }
+        current->next = new;
+        new->prev = current;
+    }
 }
 
 void pall(stack_t **stack, unsigned int line_number)
