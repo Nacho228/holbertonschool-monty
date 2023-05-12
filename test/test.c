@@ -5,6 +5,8 @@
  * @argv: which arguments were passed.
  * Return: void.
  */
+instruction_t *get_op(char *opcode);
+
 int main(int argc, char *argv[])
 {
     char *filepath = NULL, *cmd = NULL, *opcode = NULL;
@@ -12,7 +14,6 @@ int main(int argc, char *argv[])
     FILE *file;
     size_t size = 0;
     int line_number = 1;
-    stack_t *stack = NULL;
 
     if (argc != 2)
     {
@@ -41,20 +42,12 @@ int main(int argc, char *argv[])
             line_number++;
             continue;
         }
-        if (strcmp(opcode, "push") == 0)
-        {
-            push(&stack, line_number);
-        }
-        if (strcmp(opcode, "pall"))
-        {
-            pall(&stack, line_number);
-        }
-        else
-        {    
-            line_number++;
-            continue;
-        }
-    }
+        
+        get_op(opcode);
+
+        line_number++; 
+   } 
     free(cmd);
     fclose (file);
+return(0);
 }

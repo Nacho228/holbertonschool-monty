@@ -38,6 +38,7 @@ typedef struct instruction_s
 /* Prototype functions over here */
 
 void print_stack(stack_t *stack);
+instruction_t *get_op(char *opcode);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 int main(int argc, char *argv[]);

@@ -25,7 +25,7 @@ void push(stack_t **stack, unsigned int line_number)
     char *arg = NULL;
     const char *separator = " \t\n";
     int n = 0;
-    stack_t *new, *current;
+    stack_t *new = NULL, *current;
 
     arg = strtok(NULL, separator);
     if(arg == NULL)
